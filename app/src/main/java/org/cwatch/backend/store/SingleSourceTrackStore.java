@@ -21,16 +21,15 @@ public class SingleSourceTrackStore<V, I, P extends TypedPosition<I>> implements
 
 	@Override
 	public Stream<TrackElement> queryTrack(V vessel, Date from, Date to) {
-//		Stream<IdentityPeriod<I>> identifiers = identityStore.queryIdentityfiers(vessel, from, to);
-//		Stream<Stream<P>> positions = identifiers.map(ip -> positionStore.queryVessel(ip.getId(), ip.getFrom(), ip.getTo()));
-//		return positions.flatMap(Function.identity()).map(p -> createElement(p));
-		
 		return 
 				identityStore
 				.queryIdentityfiers(vessel, from, to)
-				.map(ip -> positionStore.queryVessel(ip.getId(), ip.getFrom(), ip.getTo()))
-				.flatMap(Function.identity()).map(p -> createElement(p));
-			
+				.flatMap(
+						(IdentityPeriod<I> ip) -> 
+						positionStore
+						.queryVessel(ip.getId(), ip.getFrom(), ip.getTo())
+						.map((P p) -> createElement(p))
+				);
 	}
 	
 	protected TrackElement createElement(P position) {
