@@ -1,0 +1,32 @@
+functions
+	
+	ingest messages
+	store
+	query tracks
+	manage history of ship identifiers
+	build last position layer
+	manage access rights
+	
+extra
+	
+	simulators
+	manual insert
+	
+user interface
+	
+	insert message
+	control simulator
+	check identity database
+	track query
+	visualize map
+
+message types
+	
+	ais pos
+	lrit
+	vms
+
+	ais voyage
+	
+	radar
+	other generic	
