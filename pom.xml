@@ -6,14 +6,13 @@
 	<parent>
 		<groupId>org.cwatch</groupId>
 		<artifactId>cwatch-boot-base</artifactId>
-		<version>0.0.9</version>
+		<version>0.0.10-SNAPSHOT</version>
 		<relativePath>../cwatch-boot/base</relativePath>
 	</parent>
 
 	<version>0.0.1-SNAPSHOT</version>
 	<artifactId>cwatch-backend</artifactId>
 	<packaging>pom</packaging>
-
 	<scm>
 		<connection>scm:git:https://github.com/cwatch/cwatch-backend.git</connection>
 		<developerConnection>scm:git:https://github.com/cwatch/cwatch-backend.git</developerConnection>

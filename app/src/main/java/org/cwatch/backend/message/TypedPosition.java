@@ -1,8 +1,8 @@
 package org.cwatch.backend.message;
 
 
-public interface TypedPosition<T> extends DefaultPosition {
+public interface TypedPosition<I> extends DefaultPosition {
 	
-	T getId();
+	I getId();
 
 }

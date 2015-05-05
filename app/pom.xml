@@ -53,5 +53,9 @@
 			<artifactId>mfw-web</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring-boot</artifactId>
+		</dependency>
 	</dependencies>
 </project>

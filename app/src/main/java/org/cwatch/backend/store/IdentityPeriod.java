@@ -2,12 +2,12 @@ package org.cwatch.backend.store;
 
 import java.util.Date;
 
+import com.google.common.collect.Range;
+
 public interface IdentityPeriod<I> {
 
 	I getId();
 
-	Date getFrom();
-	
-	Date getTo();
+	Range<Date> getPeriod();
 	
 }

@@ -3,6 +3,8 @@ package org.cwatch.backend.store;
 import java.util.Date;
 import java.util.stream.Stream;
 
+import com.google.common.collect.Range;
+
 public class CompositeTrackStore<V> implements TrackStore<V> {
 	
 	final Stream<TrackStore<V>> stores;
@@ -13,10 +15,10 @@ public class CompositeTrackStore<V> implements TrackStore<V> {
 	}
 
 	@Override
-	public Stream<TrackElement> queryTrack(V vessel, Date from, Date to) {
+	public Stream<TrackElement> queryTrack(V vessel, Range<Date> period) {
 		return 
 				stores
-				.flatMap(s -> queryTrack(vessel, from, to));
+				.flatMap(s -> s.queryTrack(vessel, period));
 	}
 
 }
