@@ -76,11 +76,10 @@ public class MemoryConcurrencyTest {
 					).count())
 					.reduce(0, Long::sum)
 		);
-				
-		
-		
-		
-		
+	}
+	
+	@Test
+	public void testIds() throws InterruptedException {
 	}
 	
 }

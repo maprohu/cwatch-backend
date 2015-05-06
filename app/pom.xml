@@ -57,5 +57,38 @@
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-spring-boot</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-metrics</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.cwatch</groupId>
+			<artifactId>cwatch-sim-core</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angular-sanitize</artifactId>
+			<version>1.3.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>openlayers</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+		
+		<!-- 
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angular-openlayers-directive</artifactId>
+			<version>0.0.3</version>
+		</dependency>
+		 -->
+		
 	</dependencies>
 </project>

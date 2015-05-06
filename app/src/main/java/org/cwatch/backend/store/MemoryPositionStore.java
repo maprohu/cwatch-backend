@@ -34,5 +34,10 @@ public class MemoryPositionStore<I, P extends TypedPosition<I>> implements Defau
 			p.getLongitude() <= longitudeTo
 		);
 	}
+	
+	public void clear() {
+		items.clear();
+	}
+	
 
 }

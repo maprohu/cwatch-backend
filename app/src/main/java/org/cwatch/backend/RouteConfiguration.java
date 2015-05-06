@@ -2,6 +2,8 @@ package org.cwatch.backend;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.cwatch.backend.message.AisPosition;
+import org.cwatch.backend.message.LritPosition;
+import org.cwatch.backend.message.VmsPosition;
 import org.cwatch.backend.route.Direct;
 import org.cwatch.backend.store.DefaultPositionStore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,10 @@ public class RouteConfiguration {
 		DefaultPositionStore<Integer, AisPosition> aisPositionStore;
 		
 		@Autowired
-		DefaultPositionStore<Integer, AisPosition> lritPositionStore;
+		DefaultPositionStore<Integer, LritPosition> lritPositionStore;
 		
 		@Autowired
-		DefaultPositionStore<Integer, AisPosition> vmsPositionStore;
+		DefaultPositionStore<String, VmsPosition> vmsPositionStore;
 		
 		@Override
 		public void configure() throws Exception {

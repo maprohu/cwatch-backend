@@ -10,8 +10,10 @@ import org.cwatch.backend.store.MemoryPositionStore;
 import org.cwatch.backend.store.VesselId;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @Configuration
+@Import(StoreConfiguration.class)
 public class MemoryStoreConfiguration {
 	
 	@Bean

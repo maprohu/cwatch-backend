@@ -9,6 +9,8 @@ public interface DefaultIdentityStore<V, I> {
 	
 	void set(V vessel, Range<Date> period, I identifier);
 	
+	I get(V vessel, Date timestamp);
+	
 	//V queryVessel(I id, Date when);
 	
 	Stream<IdentityPeriod<I>> queryIdentityfiers(V vessel, Range<Date> period);
