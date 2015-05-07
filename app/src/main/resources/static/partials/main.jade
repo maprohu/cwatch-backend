@@ -1,6 +1,28 @@
-openlayers(
-	ol-center="center"
-	height="480px" 
-	width="640px"
-)
+.hbox.boxItem(ng-controller="TabsCtrl")
+
+	tabset.vbox.boxItem(type="pills")
+	
+		tab.vbox.boxItem(heading="Dashboard")
+			div.vbox.boxItem
+				ul
+					li
+						a(href="#", ng-click="tabdata.map.active = true") Map
+						
+	
+	
+					
+		tab.vbox.boxItem(
+			heading="Map" 
+			active="tabdata.map.active"
+			select="resizeMap()"
+			ng-controller="MapCtrl"
+		)
+			openlayers.vbox.boxItem(
+				ol-defaults="map"
+				ol-center="center"
+			)
+			
+					
+					
+		
 	

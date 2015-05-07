@@ -1,0 +1,10 @@
+.hbox.boxItem(ng-controller="TabsCtrl")
+
+	tabset.vbox.boxItem
+	
+		tab.vbox.boxItem(heading="Dashboard")
+			div.vbox.boxIte(mw-size="setMapSize(width, height)")m
+				a(href="#", ng-click="tabs.map.active = true") Map
+						
+	
+	

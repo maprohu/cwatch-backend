@@ -1,4 +1,11 @@
-(function() {
+define([
+    'angular',
+    'openlayers',
+    'angular-sanitize'
+], function(
+    angular,
+    ol
+) {
 
 "use strict";
 
@@ -1791,4 +1798,4 @@ angular.module('openlayers-directive').factory('olMapDefaults', ["$q", "olHelper
     };
 }]);
 
-}());
+});

@@ -28,6 +28,9 @@ public class CwatchBackendMain {
 		@Override
 		public void configure(MfwWebSettings settings) {
 			settings.addCss("libs/openlayers/ol.css");
+			settings.addCss("js/modules/angular-openlayers-directive.css");
+			settings.addCss("css/app.css");
+
 		}
 		
 	}
