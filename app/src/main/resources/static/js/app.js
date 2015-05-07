@@ -3,6 +3,7 @@ requirejs([
     'jquery',
     'angular',
     'sockjs-client',
+    'stomp-websocket',
     'bootstrap',
     'modules/angular-openlayers-directive',
     'ui-bootstrap-tpls'
@@ -69,13 +70,14 @@ requirejs([
             });
         });
         
-        var socket = new SockJS("/app/portfolio");
+        var socket = new SockJS("/web");
         var stompClient = Stomp.over(socket);
 
+        //stompClient.debug = null;
         stompClient.connect({}, function(frame) {
             
             stompClient.subscribe('/topic/positions', function(position){
-                console.log(position);
+            	console.log(position);
             });            
             
         });        

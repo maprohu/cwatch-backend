@@ -28,17 +28,7 @@ public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerC
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/portfolio").withSockJS();
-    }
-
-    @Controller
-    public static class GreetingController {
-
-        @MessageMapping("/greeting") 
-        public String handle(String greeting) {
-            return "[" + DateTime.now() + ": " + greeting;
-        }
-
+        registry.addEndpoint("/web").withSockJS();
     }
 
     @Autowired
