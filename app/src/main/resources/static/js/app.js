@@ -2,9 +2,10 @@ requirejs([
     'mfw-web',
     'jquery',
     'angular',
+    'sockjs-client',
     'bootstrap',
     'modules/angular-openlayers-directive',
-    'ui-bootstrap-tpls',
+    'ui-bootstrap-tpls'
 ], function(
         mfwweb,
         jquery,
@@ -15,7 +16,10 @@ requirejs([
         'mfw-web',
         'openlayers-directive',
         'ui.bootstrap'
-    ]).controller('TabsCtrl', function($templateCache) {
+    ]).controller('TabsCtrl', function($scope, $templateCache) {
+        
+        $scope.tabdata = {};
+        
         $templateCache.put("template/tabs/tabset.html",
             "\n" +
             "<div>\n" +
@@ -28,7 +32,8 @@ requirejs([
             "    </div>\n" +
             "  </div>\n" +
             "</div>\n" +
-            "");        
+            "");
+        
     }).controller('MapCtrl', function($scope, $timeout,  olData) {
         
         angular.extend($scope, {
@@ -63,6 +68,17 @@ requirejs([
                 canvas.css('height', '');
             });
         });
+        
+        var socket = new SockJS("/app/portfolio");
+        var stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function(frame) {
+            
+            stompClient.subscribe('/topic/positions', function(position){
+                console.log(position);
+            });            
+            
+        });        
         
     });
     

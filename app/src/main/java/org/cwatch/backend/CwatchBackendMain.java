@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 @EnableAutoConfiguration
 @Import({
 	MfwWebConfiguration.class,
-	MemoryStoreConfiguration.class
+	MemoryStoreConfiguration.class,
+	LatestPositionConfiguration.class,
 })
 public class CwatchBackendMain {
 	
