@@ -13,12 +13,14 @@ import org.cwatch.backend.store.VesselId;
 import org.cwatch.backend.test.IdentityGenerator;
 import org.cwatch.backend.test.RealTimeSimulator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Configuration
@@ -49,6 +51,7 @@ public class CwatchBackendMain implements CommandLineRunner {
 	}
 
 	@Bean
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	RealTimeSimulator<VesselId> realTimeSimulator() {
 		return new RealTimeSimulator<VesselId>();
 	}
@@ -74,13 +77,16 @@ public class CwatchBackendMain implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		IdentityGenerator<VesselId> idg = IdentityGenerator.newInstance();
-		idg.setVesselCount(100);
+		idg.setVesselCount(1000);
 		
 		idg.generate(mmsiIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(100, 200));
 		idg.generate(imoIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(200, 300));
 		idg.generate(irIdentityStore, (v, d) -> Integer.toString(v.getId() * 1000 + ThreadLocalRandom.current().nextInt(300, 400)));
 		
-		realTimeSimulator().simulate( 
+		RealTimeSimulator<VesselId> realTimeSimulator = realTimeSimulator();
+		realTimeSimulator.setReportingPeriodSeconds(1);
+		realTimeSimulator.setReportingPeriodVariationSeconds(0.1);
+		realTimeSimulator.simulate( 
 			idg.getVessels(), 
 			aisPosition::sendBody,
 			lritPosition::sendBody,

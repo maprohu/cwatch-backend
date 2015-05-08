@@ -30,6 +30,7 @@ public class MemoryConcurrencyTest {
 						ThreadLocalRandom.current().nextInt(vesselCount), 
 						new Date(ThreadLocalRandom.current().nextLong()), 
 						ThreadLocalRandom.current().nextDouble(), 
+						ThreadLocalRandom.current().nextDouble(),
 						ThreadLocalRandom.current().nextDouble()
 				))
 		));

@@ -1,5 +1,8 @@
 package org.cwatch.backend.store;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize(using=VesselIdSerializer.class)
 public class VesselId {
 	
 	final int id;

@@ -28,4 +28,9 @@ public class DelegatingTrackElement<P extends DefaultPosition> implements TrackE
 		return delegate.getLongitude();
 	}
 
+	@Override
+	public double getHeading() {
+		return delegate.getHeading();
+	}
+
 }

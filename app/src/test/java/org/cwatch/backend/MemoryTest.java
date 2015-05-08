@@ -87,8 +87,9 @@ public class MemoryTest {
 				rnd.nextInt(), 
 				new Date(rnd.nextLong()), 
 				rnd.nextDouble(), 
-				rnd.nextDouble())
-		));
+				rnd.nextDouble(),
+				rnd.nextDouble()
+		)));
 		
 		Assert.assertEquals(count, aisPositionStore.queryArea(
 				Range.<Date>all(), 
@@ -131,26 +132,29 @@ public class MemoryTest {
 				switch(ThreadLocalRandom.current().nextInt(3)) {
 				case 0:
 					aisPosition.sendBody(new MemoryAisPosition(
-							mmsiIdentityStore.get(v, pos.getTimeStamp()), 
+							mmsiIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
-							pos.getCooordinates().getLongitude().getValue() 
+							pos.getCooordinates().getLongitude().getValue(),
+							pos.getDirection()
 					));
 					break;
 				case 1:
 					lritPosition.sendBody(new MemoryLritPosition(
-							imoIdentityStore.get(v, pos.getTimeStamp()), 
+							imoIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
-							pos.getCooordinates().getLongitude().getValue() 
+							pos.getCooordinates().getLongitude().getValue(),
+							pos.getDirection() 
 					));
 					break;
 				case 2:
 					vmsPosition.sendBody(new MemoryVmsPosition(
-							irIdentityStore.get(v, pos.getTimeStamp()), 
+							irIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
-							pos.getCooordinates().getLongitude().getValue() 
+							pos.getCooordinates().getLongitude().getValue(),
+							pos.getDirection() 
 					));
 					break;
 				}

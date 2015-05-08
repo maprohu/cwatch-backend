@@ -14,13 +14,16 @@ public class DefaultTypedPosition<I> implements TypedPosition<I> {
 	
 	final double longitude;
 	
+	final double heading;
+	
 	public DefaultTypedPosition(I id, Date timestamp, double latitude,
-			double longitude) {
+			double longitude, double heading) {
 		super();
 		this.id = id;
 		this.timestamp = timestamp;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.heading = heading;
 	}
 
 	@Override
@@ -41,6 +44,11 @@ public class DefaultTypedPosition<I> implements TypedPosition<I> {
 	@Override
 	public double getLongitude() {
 		return longitude;
+	}
+
+	@Override
+	public double getHeading() {
+		return heading;
 	}
 
 }

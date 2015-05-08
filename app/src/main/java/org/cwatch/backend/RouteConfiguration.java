@@ -5,6 +5,7 @@ import org.cwatch.backend.message.AisPosition;
 import org.cwatch.backend.message.LritPosition;
 import org.cwatch.backend.message.TypedPosition;
 import org.cwatch.backend.message.VmsPosition;
+import org.cwatch.backend.process.LatestPositionProcessor;
 import org.cwatch.backend.route.Direct;
 import org.cwatch.backend.store.DefaultIdentityStore;
 import org.cwatch.backend.store.DefaultPositionStore;
@@ -20,39 +21,33 @@ public class RouteConfiguration {
 	public static class Routes extends RouteBuilder {
 
 		@Autowired
-		DefaultPositionStore<Integer, AisPosition> aisPositionStore;
+		private DefaultPositionStore<Integer, AisPosition> aisPositionStore;
 		
 		@Autowired
-		DefaultPositionStore<Integer, LritPosition> lritPositionStore;
+		private DefaultPositionStore<Integer, LritPosition> lritPositionStore;
 		
 		@Autowired
-		DefaultPositionStore<String, VmsPosition> vmsPositionStore;
+		private DefaultPositionStore<String, VmsPosition> vmsPositionStore;
 		
 		@Autowired
-		DefaultIdentityStore<VesselId, Integer> mmsiIdentityStore;
-		
-		@Autowired
-		DefaultIdentityStore<VesselId, Integer> imoIdentityStore;
-		
-		@Autowired
-		DefaultIdentityStore<VesselId, String> irIdentityStore;
+		private LatestPositionProcessor latestPositionProcessor;
 		
 		@Override
 		public void configure() throws Exception {
 			Direct.AIS_POSITION.from(this)
 			.multicast().parallelProcessing()
 			.bean(aisPositionStore)
-			.process(ex -> latestPosition(ex.getIn().getBody(AisPosition.class), mmsiIdentityStore));
+			.process(ex -> latestPositionProcessor.processAis(ex.getIn().getBody(AisPosition.class)));
 
 			Direct.LRIT_POSITION.from(this)
 			.multicast().parallelProcessing()
 			.bean(lritPositionStore)
-			.process(ex -> latestPosition(ex.getIn().getBody(LritPosition.class), imoIdentityStore));
+			.process(ex -> latestPositionProcessor.processLrit(ex.getIn().getBody(LritPosition.class)));
 
 			Direct.VMS_POSITION.from(this)
 			.multicast().parallelProcessing()
 			.bean(vmsPositionStore)
-			.process(ex -> latestPosition(ex.getIn().getBody(VmsPosition.class), irIdentityStore));
+			.process(ex -> latestPositionProcessor.processVms(ex.getIn().getBody(VmsPosition.class)));
 		}
 		
 		<I, P extends TypedPosition<I>> void latestPosition(P position, DefaultIdentityStore<VesselId, I> ids) {

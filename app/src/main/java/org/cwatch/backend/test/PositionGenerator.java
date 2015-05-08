@@ -55,7 +55,7 @@ public class PositionGenerator {
 		generate(
 				positionStore,
 				(simulatedPosition) -> positionFactory.apply(
-						identityStore.get(vesselId, simulatedPosition.getTimeStamp()),
+						identityStore.getIdentifier(vesselId, simulatedPosition.getTimeStamp()),
 						simulatedPosition
 				)
 		);

@@ -3,6 +3,8 @@ package org.cwatch.backend;
 import org.cwatch.backend.message.AisPosition;
 import org.cwatch.backend.message.LritPosition;
 import org.cwatch.backend.message.VmsPosition;
+import org.cwatch.backend.process.MemoryProfileService;
+import org.cwatch.backend.process.ProfileService;
 import org.cwatch.backend.store.DefaultIdentityStore;
 import org.cwatch.backend.store.DefaultPositionStore;
 import org.cwatch.backend.store.MemoryIdentityStore;
@@ -44,6 +46,11 @@ public class MemoryStoreConfiguration {
 	@Bean
 	DefaultIdentityStore<VesselId, String> irIdentityStore() {
 		return new MemoryIdentityStore<VesselId, String>();
+	}
+	
+	@Bean
+	ProfileService<VesselId> profileService() {
+		return new MemoryProfileService<>();
 	}
 
 }

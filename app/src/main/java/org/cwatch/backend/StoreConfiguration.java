@@ -3,9 +3,13 @@ package org.cwatch.backend;
 import org.cwatch.backend.message.AisPosition;
 import org.cwatch.backend.message.LritPosition;
 import org.cwatch.backend.message.VmsPosition;
+import org.cwatch.backend.process.DefaultEnrichmentService;
+import org.cwatch.backend.process.EnrichmentService;
 import org.cwatch.backend.store.CompositeTrackStore;
 import org.cwatch.backend.store.DefaultIdentityStore;
+import org.cwatch.backend.store.DefaultIdentityStores;
 import org.cwatch.backend.store.DefaultPositionStore;
+import org.cwatch.backend.store.IdentityStores;
 import org.cwatch.backend.store.SingleSourceTrackStore;
 import org.cwatch.backend.store.VesselId;
 import org.springframework.context.annotation.Bean;
@@ -56,5 +60,19 @@ public class StoreConfiguration {
 		
 	}
 	
+	@Bean 
+	IdentityStores<VesselId> identityStores(
+			DefaultIdentityStore<VesselId, Integer> mmsiIdentityStore, 
+			DefaultIdentityStore<VesselId, Integer> imoIdentityStore, 
+			DefaultIdentityStore<VesselId, String> irIdentityStore
+	) {
+		return new DefaultIdentityStores<VesselId>(mmsiIdentityStore, imoIdentityStore, irIdentityStore);
+	}
+
+    @Bean
+    EnrichmentService<VesselId> enrichmentService(IdentityStores<VesselId> identityStores) {
+    	return new DefaultEnrichmentService<VesselId>(identityStores);
+    }
+    
 	
 }

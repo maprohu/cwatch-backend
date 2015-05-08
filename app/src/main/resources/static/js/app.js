@@ -2,15 +2,17 @@ requirejs([
     'mfw-web',
     'jquery',
     'angular',
+    'openlayers',
     'sockjs-client',
     'stomp-websocket',
     'bootstrap',
     'modules/angular-openlayers-directive',
-    'ui-bootstrap-tpls'
+    'ui-bootstrap-tpls',
 ], function(
         mfwweb,
         jquery,
-        angular
+        angular,
+        ol
 ) {
     
     angular.module('mfw-app', [
@@ -35,7 +37,7 @@ requirejs([
             "</div>\n" +
             "");
         
-    }).controller('MapCtrl', function($scope, $timeout,  olData) {
+    }).controller('MapCtrl', function($scope, $timeout, $http, olData, olHelpers, olMapDefaults) {
         
         angular.extend($scope, {
             center: {
@@ -43,7 +45,7 @@ requirejs([
                 lon: -9.142667,
                 zoom: 6
             },
-            map: {
+            mapDefaults: {
                 interactions: {
                     mouseWheelZoom: true
                 },
@@ -73,14 +75,76 @@ requirejs([
         var socket = new SockJS("/web");
         var stompClient = Stomp.over(socket);
 
-        //stompClient.debug = null;
+        stompClient.debug = null;
         stompClient.connect({}, function(frame) {
             
-            stompClient.subscribe('/topic/positions', function(position){
-            	console.log(position);
-            });            
+//            stompClient.subscribe('/topic/positions', function(position){
+//            	console.log(position);
+//            });            
             
+            $http.get('/service/position/start').success(function(data) {
+                
+                olData.getMap().then(function(map) {
+                    var vesselsLayer = olHelpers.createVectorLayer();
+                    
+//                    var stroke = new ol.style.Stroke({color: 'black', width: 2});
+//                    var fill = new ol.style.Fill({color: 'red'});
+//                    vesselsLayer.setStyle(
+//                        new ol.style.Style({
+//                            image: new ol.style.RegularShape({
+//                                fill: fill,
+//                                stroke: stroke,
+//                                points: 3,
+//                                radius: 10
+//                            }) 
+//                        })
+//                    );
+                    
+                    map.addLayer(vesselsLayer);
+                    
+                    var vessels = {};
+                    
+                    stompClient.subscribe('/queue/positions/' + data, function(position){
+                        
+                        var mapDefaults = olMapDefaults.getDefaults();
+                        var viewProjection = mapDefaults.view.projection;
+                        
+                        var pos = JSON.parse(position.body);
+
+                        var geometry = new ol.geom.Point([pos.lon, pos.lat]);
+                        geometry = geometry.transform('EPSG:4326', viewProjection);
+                        
+                        var style = new ol.style.Style({
+                            image: new ol.style.Icon({
+                                src: 'images/vessel.png',
+                                scale: 0.4,
+                                rotation: pos.hdg * Math.PI / 180
+                            }) 
+                        });
+                        
+                        var id = pos.id;
+                        var vessel = vessels[id];
+                        
+                        if (!angular.isDefined(vessel)) {
+                            vessel = new ol.Feature({
+                                geometry: geometry
+                            });
+                            vesselsLayer.getSource().addFeature(vessel);
+                            vessels[id] = vessel;
+                        } else {
+                            vessel.setGeometry(geometry);
+                        }
+                        vessel.setStyle(style);
+                        
+                    });            
+
+                });
+                
+                
+            });
         });        
+        
+        
         
     });
     

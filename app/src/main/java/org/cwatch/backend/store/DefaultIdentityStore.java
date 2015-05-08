@@ -9,7 +9,11 @@ public interface DefaultIdentityStore<V, I> {
 	
 	void set(V vessel, Range<Date> period, I identifier);
 	
-	I get(V vessel, Date timestamp);
+	I getIdentifier(V vessel, Date timestamp);
+	
+	V getVessel(I identifier, Date timestamp);
+
+	V getLatestVessel(I identifier);
 	
 	//V queryVessel(I id, Date when);
 	

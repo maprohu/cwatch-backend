@@ -10,4 +10,6 @@ public interface DefaultPosition {
 
 	double getLongitude();
 	
+	double getHeading();
+	
 }

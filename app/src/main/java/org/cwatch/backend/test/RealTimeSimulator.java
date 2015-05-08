@@ -42,26 +42,29 @@ public class RealTimeSimulator<V> {
 				switch(ThreadLocalRandom.current().nextInt(3)) {
 				case 0:
 					aisPosition.accept(new MemoryAisPosition(
-							mmsiIdentityStore.get(v, pos.getTimeStamp()), 
+							mmsiIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
-							pos.getCooordinates().getLongitude().getValue() 
+							pos.getCooordinates().getLongitude().getValue(),
+							pos.getDirection() 
 					));
 					break;
 				case 1:
 					lritPosition.accept(new MemoryLritPosition(
-							imoIdentityStore.get(v, pos.getTimeStamp()), 
+							imoIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
-							pos.getCooordinates().getLongitude().getValue() 
+							pos.getCooordinates().getLongitude().getValue(),
+							pos.getDirection() 
 					));
 					break;
 				case 2:
 					vmsPosition.accept(new MemoryVmsPosition(
-							irIdentityStore.get(v, pos.getTimeStamp()), 
+							irIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
-							pos.getCooordinates().getLongitude().getValue() 
+							pos.getCooordinates().getLongitude().getValue(),
+							pos.getDirection() 
 					));
 					break;
 				}
@@ -69,5 +72,22 @@ public class RealTimeSimulator<V> {
 			});
 			sim.start();
 		});
+	}
+
+	public double getReportingPeriodSeconds() {
+		return reportingPeriodSeconds;
+	}
+
+	public void setReportingPeriodSeconds(double reportingPeriodSeconds) {
+		this.reportingPeriodSeconds = reportingPeriodSeconds;
+	}
+
+	public double getReportingPeriodVariationSeconds() {
+		return reportingPeriodVariationSeconds;
+	}
+
+	public void setReportingPeriodVariationSeconds(
+			double reportingPeriodVariationSeconds) {
+		this.reportingPeriodVariationSeconds = reportingPeriodVariationSeconds;
 	}
 }
