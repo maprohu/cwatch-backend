@@ -77,7 +77,7 @@ public class CwatchBackendMain implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		IdentityGenerator<VesselId> idg = IdentityGenerator.newInstance();
-		idg.setVesselCount(100);
+		idg.setVesselCount(1000);
 		
 		idg.generate(mmsiIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(100, 200));
 		idg.generate(imoIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(200, 300));
