@@ -77,14 +77,14 @@ public class CwatchBackendMain implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		IdentityGenerator<VesselId> idg = IdentityGenerator.newInstance();
-		idg.setVesselCount(1000);
+		idg.setVesselCount(10);
 		
 		idg.generate(mmsiIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(100, 200));
 		idg.generate(imoIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(200, 300));
 		idg.generate(irIdentityStore, (v, d) -> Integer.toString(v.getId() * 1000 + ThreadLocalRandom.current().nextInt(300, 400)));
 		
 		RealTimeSimulator<VesselId> realTimeSimulator = realTimeSimulator();
-		realTimeSimulator.setReportingPeriodSeconds(1);
+		realTimeSimulator.setReportingPeriodSeconds(60);
 		realTimeSimulator.setReportingPeriodVariationSeconds(0.1);
 		realTimeSimulator.simulate( 
 			idg.getVessels(), 

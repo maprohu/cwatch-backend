@@ -49,6 +49,9 @@ requirejs([
                 interactions: {
                     mouseWheelZoom: true
                 },
+                events: {
+                    map: [ 'moveend' ]
+                }
             },
         });
         
@@ -75,14 +78,14 @@ requirejs([
         var socket = new SockJS("/web");
         var stompClient = Stomp.over(socket);
 
-        stompClient.debug = null;
+        //stompClient.debug = null;
         stompClient.connect({}, function(frame) {
             
 //            stompClient.subscribe('/topic/positions', function(position){
 //            	console.log(position);
 //            });            
             
-            $http.get('/service/position/start').success(function(data) {
+            $http.get('/service/position/start').success(function(viewId) {
                 
                 olData.getMap().then(function(map) {
                     var vesselsLayer = olHelpers.createVectorLayer();
@@ -104,7 +107,7 @@ requirejs([
                     
                     var vessels = {};
                     
-                    stompClient.subscribe('/queue/positions/' + data, function(position){
+                    stompClient.subscribe('/queue/positions/' + viewId, function(position){
                         
                         var mapDefaults = olMapDefaults.getDefaults();
                         var viewProjection = mapDefaults.view.projection;
@@ -137,13 +140,30 @@ requirejs([
                         vessel.setStyle(style);
                         
                     });            
+                    
+                    $scope.$on('openlayers.map.moveend', function(event) {
+                        console.log("boo");
+                        var view = map.getView();
+                        var size = map.getSize();
+                        var center = map.getView().getCenter();
+                        stompClient.send("/app/positions/view", {}, JSON.stringify({
+                            viewId: viewId,
+                            centerLatitude: center[1],
+                            centerLongitude: center[0],
+                            zoom: view.getZoom(),
+                            projection: view.getProjection().getCode(),
+                            width: size[0],
+                            height: size[1]
+                        }));
+                        
+                    })
+                                        
 
                 });
                 
                 
             });
         });        
-        
         
         
     });

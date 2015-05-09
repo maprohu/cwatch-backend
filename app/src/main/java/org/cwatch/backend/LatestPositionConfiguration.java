@@ -12,6 +12,8 @@ import org.cwatch.backend.store.VesselId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +26,10 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
+public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerConfigurer  {
 
 	private static final String SESSION_POSITION_VIEWS_MAP = "positionViewsMap";
+	
 	
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -82,6 +85,27 @@ public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerC
     		return view.getViewId();
     	}
     	
+    	@MessageMapping("/positions/view")
+    	public void positionsView(PositionsView viewData, SimpMessageHeaderAccessor headers) {
+    		System.out.println("boo");
+    		
+    		@SuppressWarnings("unused")
+			Map<Integer, LatestPositionView<VesselId>> viewsMap = (Map<Integer, LatestPositionView<VesselId>>) headers.getSessionAttributes().get(SESSION_POSITION_VIEWS_MAP);
+    		
+    		LatestPositionView<VesselId> view = viewsMap.get(viewData.viewId);
+    		
+    		
+    	}
+    	
+    	public static class PositionsView {
+    		public int viewId;
+    		public double centerLatitude;
+    		public double centerLongitude;
+    		public double zoom;
+    		public String projection;
+    		public int width;
+    		public int height;
+    	}
 
     	
     }
