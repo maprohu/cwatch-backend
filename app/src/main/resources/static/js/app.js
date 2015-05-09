@@ -151,6 +151,7 @@ requirejs([
                             centerLatitude: center[1],
                             centerLongitude: center[0],
                             zoom: view.getZoom(),
+                            rotation: view.getRotation(),
                             projection: view.getProjection().getCode(),
                             width: size[0],
                             height: size[1]

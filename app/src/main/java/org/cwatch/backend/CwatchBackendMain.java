@@ -45,7 +45,6 @@ public class CwatchBackendMain implements CommandLineRunner {
 			settings.addCss("libs/openlayers/ol.css");
 			settings.addCss("js/modules/angular-openlayers-directive.css");
 			settings.addCss("css/app.css");
-
 		}
 		
 	}

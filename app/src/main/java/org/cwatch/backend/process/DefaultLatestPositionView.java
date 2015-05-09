@@ -62,4 +62,11 @@ public final class DefaultLatestPositionView<V> implements LatestPositionView<V>
 	public int getViewId() {
 		return viewId;
 	}
+
+	@Override
+	public void setVieport(
+			org.cwatch.backend.process.LatestPositionView.Viewport viewport) {
+		// TODO Auto-generated method stub
+		
+	}
 }
