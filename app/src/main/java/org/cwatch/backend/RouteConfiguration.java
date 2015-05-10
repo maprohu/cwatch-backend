@@ -36,17 +36,17 @@ public class RouteConfiguration {
 		public void configure() throws Exception {
 			Direct.AIS_POSITION.from(this)
 			.multicast().parallelProcessing()
-			.bean(aisPositionStore)
+			//.bean(aisPositionStore)
 			.process(ex -> latestPositionProcessor.processAis(ex.getIn().getBody(AisPosition.class)));
 
 			Direct.LRIT_POSITION.from(this)
 			.multicast().parallelProcessing()
-			.bean(lritPositionStore)
+			//.bean(lritPositionStore)
 			.process(ex -> latestPositionProcessor.processLrit(ex.getIn().getBody(LritPosition.class)));
 
 			Direct.VMS_POSITION.from(this)
 			.multicast().parallelProcessing()
-			.bean(vmsPositionStore)
+			//.bean(vmsPositionStore)
 			.process(ex -> latestPositionProcessor.processVms(ex.getIn().getBody(VmsPosition.class)));
 		}
 		

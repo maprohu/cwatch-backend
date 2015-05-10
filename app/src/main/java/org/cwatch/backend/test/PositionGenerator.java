@@ -2,6 +2,7 @@ package org.cwatch.backend.test;
 
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -37,7 +38,7 @@ public class PositionGenerator {
 	}
 
 	public void generate(PositionCallback positionCallback) {
-		StraightTrackSimulator track = new StraightTrackSimulator();
+		StraightTrackSimulator track = new StraightTrackSimulator(Executors.newSingleThreadScheduledExecutor());
 		track.register(simulatedPosition -> {
 			executorService.execute(() -> {
 				positionCallback.onMessage(simulatedPosition);

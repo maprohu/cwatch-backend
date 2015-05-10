@@ -4,6 +4,8 @@ import hu.mapro.mfw.web.MfwWebConfiguration;
 import hu.mapro.mfw.web.MfwWebConfigurer;
 import hu.mapro.mfw.web.MfwWebSettings;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.camel.Produce;
@@ -12,6 +14,8 @@ import org.cwatch.backend.store.DefaultIdentityStore;
 import org.cwatch.backend.store.VesselId;
 import org.cwatch.backend.test.IdentityGenerator;
 import org.cwatch.backend.test.RealTimeSimulator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -32,6 +36,8 @@ import org.springframework.stereotype.Component;
 	RouteConfiguration.class
 })
 public class CwatchBackendMain implements CommandLineRunner {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(CwatchBackendMain.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CwatchBackendMain.class, args);
@@ -76,16 +82,20 @@ public class CwatchBackendMain implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		IdentityGenerator<VesselId> idg = IdentityGenerator.newInstance();
-		idg.setVesselCount(10000);
+		idg.setVesselCount(20000);
 		
 		idg.generate(mmsiIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(100, 200));
 		idg.generate(imoIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(200, 300));
 		idg.generate(irIdentityStore, (v, d) -> Integer.toString(v.getId() * 1000 + ThreadLocalRandom.current().nextInt(300, 400)));
 		
+		LOG.info("Ids generated for {} vessels.", idg.getVesselCount());
+		
 		RealTimeSimulator<VesselId> realTimeSimulator = realTimeSimulator();
 		realTimeSimulator.setReportingPeriodSeconds(1);
 		realTimeSimulator.setReportingPeriodVariationSeconds(0.1);
+		ScheduledExecutorService pool = Executors.newScheduledThreadPool(4);
 		realTimeSimulator.simulate( 
+			Executors.newSingleThreadScheduledExecutor(),
 			idg.getVessels(), 
 			aisPosition::sendBody,
 			lritPosition::sendBody,

@@ -45,7 +45,7 @@ public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerC
 	public void configureWebSocketTransport(
 			WebSocketTransportRegistration registration) {
 		registration.setSendTimeLimit(15 * 1000).setSendBufferSizeLimit(
-				2048 * 1024);
+				4096 * 1024);
 	}
 
     @Override
@@ -146,8 +146,6 @@ public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerC
     	
     	@MessageMapping("/positions/view")
     	public void positionsView(PositionsView viewData, SimpMessageHeaderAccessor headers) {
-    		System.out.println("boo");
-    		
 			@SuppressWarnings("unchecked")
 			Map<Integer, LatestPositionView<VesselId>> viewsMap = (Map<Integer, LatestPositionView<VesselId>>) headers.getSessionAttributes().get(SESSION_POSITION_VIEWS_MAP);
     		

@@ -51,7 +51,8 @@ requirejs([
                 },
                 events: {
                     map: [ 'moveend', 'singleclick' ]
-                }
+                },
+                renderer: 'webgl'
             },
         });
         
@@ -78,7 +79,7 @@ requirejs([
         var socket = new SockJS("/web");
         var stompClient = Stomp.over(socket);
 
-        //stompClient.debug = null;
+        stompClient.debug = null;
         stompClient.connect({}, function(frame) {
             
 //            stompClient.subscribe('/topic/positions', function(position){
@@ -123,7 +124,8 @@ requirejs([
                             image: new ol.style.Icon({
                                 src: 'images/vessel.png',
                                 scale: 0.4,
-                                rotation: pos.hdg * Math.PI / 180
+//                                rotation: pos.hdg 
+                                rotation: -pos.hdg * Math.PI / 180
                             }) 
                         });
                         
@@ -144,7 +146,6 @@ requirejs([
                     });            
                     
                     $scope.$on('openlayers.map.moveend', function(event, data) {
-                        console.log("boo");
                         var view = map.getView();
                         var size = map.getSize();
                         var center = map.getView().getCenter();
@@ -159,15 +160,15 @@ requirejs([
                         
                     })
                                         
-                    var prositionInverseTransform = ol.proj.getTransform(
-                            map.getView().getProjection(),
-                            'EPSG:4326' 
-                    );
-                    $scope.$on('openlayers.map.singleclick', function(event, data) {
-                        console.log(data.coord);
-                        console.log(prositionInverseTransform(data.coord))
-                        
-                    });
+//                    var prositionInverseTransform = ol.proj.getTransform(
+//                            map.getView().getProjection(),
+//                            'EPSG:4326' 
+//                    );
+//                    $scope.$on('openlayers.map.singleclick', function(event, data) {
+//                        console.log(data.coord);
+//                        console.log(prositionInverseTransform(data.coord))
+//                        
+//                    });
                     
                 });
                 

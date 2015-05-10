@@ -1,5 +1,6 @@
 package org.cwatch.backend.test;
 
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
@@ -29,13 +30,14 @@ public class RealTimeSimulator<V> {
 	DefaultIdentityStore<V, String> irIdentityStore;
 	
 	public void simulate(
+			ScheduledExecutorService executorService,
 			Stream<V> vessels,
 			Consumer<AisPosition> aisPosition,
 			Consumer<LritPosition> lritPosition,
 			Consumer<VmsPosition> vmsPosition
 	) {
 		vessels.forEach(v -> {
-			StraightTrackSimulator sim = new StraightTrackSimulator();
+			StraightTrackSimulator sim = new StraightTrackSimulator(executorService);
 			sim.randomize();
 			sim.setReportingPeriodSeconds(ThreadLocalRandom.current().nextDouble(reportingPeriodSeconds-reportingPeriodVariationSeconds, reportingPeriodSeconds+reportingPeriodVariationSeconds));
 			sim.register(pos -> {
