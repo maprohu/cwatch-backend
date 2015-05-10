@@ -8,19 +8,16 @@ public interface LatestPositionView<V> extends EnrichedPositionProcessor<V> {
 
 	public interface Viewport {
 
+		public abstract double[] getMatrix();
+
+		public abstract int getMargin();
+
 		public abstract int getHeight();
 
 		public abstract int getWidth();
 
 		public abstract String getProjection();
 
-		public abstract double getRotation();
-
-		public abstract double getZoom();
-
-		public abstract double getCenterLongitude();
-
-		public abstract double getCenterLatitude();
 		
 	}
 }

@@ -50,7 +50,7 @@ requirejs([
                     mouseWheelZoom: true
                 },
                 events: {
-                    map: [ 'moveend' ]
+                    map: [ 'moveend', 'singleclick' ]
                 }
             },
         });
@@ -90,6 +90,8 @@ requirejs([
                 olData.getMap().then(function(map) {
                     var vesselsLayer = olHelpers.createVectorLayer();
                     
+                    var prositionTransform = ol.proj.getTransform('EPSG:4326', map.getView().getProjection());
+                    
 //                    var stroke = new ol.style.Stroke({color: 'black', width: 2});
 //                    var fill = new ol.style.Fill({color: 'red'});
 //                    vesselsLayer.setStyle(
@@ -115,7 +117,7 @@ requirejs([
                         var pos = JSON.parse(position.body);
 
                         var geometry = new ol.geom.Point([pos.lon, pos.lat]);
-                        geometry = geometry.transform('EPSG:4326', viewProjection);
+                        geometry.applyTransform(prositionTransform);
                         
                         var style = new ol.style.Style({
                             image: new ol.style.Icon({
@@ -141,30 +143,38 @@ requirejs([
                         
                     });            
                     
-                    $scope.$on('openlayers.map.moveend', function(event) {
+                    $scope.$on('openlayers.map.moveend', function(event, data) {
                         console.log("boo");
                         var view = map.getView();
                         var size = map.getSize();
                         var center = map.getView().getCenter();
                         stompClient.send("/app/positions/view", {}, JSON.stringify({
                             viewId: viewId,
-                            centerLatitude: center[1],
-                            centerLongitude: center[0],
-                            zoom: view.getZoom(),
-                            rotation: view.getRotation(),
                             projection: view.getProjection().getCode(),
                             width: size[0],
-                            height: size[1]
+                            height: size[1],
+                            margin: 10,
+                            matrix: data.event.frameState.coordinateToPixelMatrix
                         }));
                         
                     })
                                         
-
+                    var prositionInverseTransform = ol.proj.getTransform(
+                            map.getView().getProjection(),
+                            'EPSG:4326' 
+                    );
+                    $scope.$on('openlayers.map.singleclick', function(event, data) {
+                        console.log(data.coord);
+                        console.log(prositionInverseTransform(data.coord))
+                        
+                    });
+                    
                 });
                 
                 
             });
         });        
+     
         
         
     });

@@ -3,7 +3,6 @@ package org.cwatch.backend;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.media.jai.widget.ViewportListener;
 import javax.servlet.http.HttpSession;
 
 import org.cwatch.backend.process.DefaultLatestPositionService;
@@ -31,6 +30,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketTransportRegistration;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
@@ -41,6 +41,13 @@ public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerC
 	private static final String SESSION_POSITION_VIEWS_MAP = "positionViewsMap";
 	
 	
+	@Override
+	public void configureWebSocketTransport(
+			WebSocketTransportRegistration registration) {
+		registration.setSendTimeLimit(15 * 1000).setSendBufferSizeLimit(
+				2048 * 1024);
+	}
+
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.setApplicationDestinationPrefixes("/app");
@@ -151,29 +158,11 @@ public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerC
     	
     	public static class PositionsView implements Viewport {
     		public int viewId;
-    		public double centerLatitude;
-    		public double centerLongitude;
-    		public double zoom;
-    		public double rotation;
     		public String projection;
     		public int width;
     		public int height;
-			@Override
-			public double getCenterLatitude() {
-				return centerLatitude;
-			}
-			@Override
-			public double getCenterLongitude() {
-				return centerLongitude;
-			}
-			@Override
-			public double getZoom() {
-				return zoom;
-			}
-			@Override
-			public double getRotation() {
-				return rotation;
-			}
+    		public int margin;
+    		public double[] matrix;
 			@Override
 			public String getProjection() {
 				return projection;
@@ -186,9 +175,18 @@ public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerC
 			public int getHeight() {
 				return height;
 			}
+			@Override
+			public int getMargin() {
+				return margin;
+			}
+			@Override
+			public double[] getMatrix() {
+				return matrix;
+			}
+    		
     	}
-
     	
     }
+    
     
 }
