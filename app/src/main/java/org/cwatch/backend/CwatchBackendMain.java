@@ -83,7 +83,7 @@ public class CwatchBackendMain implements CommandLineRunner {
 		idg.generate(irIdentityStore, (v, d) -> Integer.toString(v.getId() * 1000 + ThreadLocalRandom.current().nextInt(300, 400)));
 		
 		RealTimeSimulator<VesselId> realTimeSimulator = realTimeSimulator();
-		realTimeSimulator.setReportingPeriodSeconds(60);
+		realTimeSimulator.setReportingPeriodSeconds(5);
 		realTimeSimulator.setReportingPeriodVariationSeconds(0.1);
 		realTimeSimulator.simulate( 
 			idg.getVessels(), 
