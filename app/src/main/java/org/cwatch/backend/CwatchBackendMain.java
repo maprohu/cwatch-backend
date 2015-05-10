@@ -5,7 +5,6 @@ import hu.mapro.mfw.web.MfwWebConfigurer;
 import hu.mapro.mfw.web.MfwWebSettings;
 
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.camel.Produce;
@@ -21,6 +20,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -28,7 +28,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Configuration
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude={
+		SolrAutoConfiguration.class
+})
 @Import({
 	MfwWebConfiguration.class,
 	MemoryStoreConfiguration.class,
@@ -93,7 +95,6 @@ public class CwatchBackendMain implements CommandLineRunner {
 		RealTimeSimulator<VesselId> realTimeSimulator = realTimeSimulator();
 		realTimeSimulator.setReportingPeriodSeconds(1);
 		realTimeSimulator.setReportingPeriodVariationSeconds(0.1);
-		ScheduledExecutorService pool = Executors.newScheduledThreadPool(4);
 		realTimeSimulator.simulate( 
 			Executors.newSingleThreadScheduledExecutor(),
 			idg.getVessels(), 
@@ -104,5 +105,22 @@ public class CwatchBackendMain implements CommandLineRunner {
 			
 
 	}
+	
+//	@Service
+//	public static class SolrService {
+//		
+//		@PostConstruct
+//		public void start() {
+//			System.setProperty("solr.solr.home", "target/solr");
+//			CoreContainer coreContainer = new CoreContainer(); 
+//			EmbeddedSolrServer server = new EmbeddedSolrServer(coreContainer, "");
+//		}
+//		
+//		@PreDestroy
+//		public void stop() {
+//			
+//		}
+//		
+//	}
 
 }
