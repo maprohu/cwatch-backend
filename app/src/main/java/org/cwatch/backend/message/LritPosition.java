@@ -1,5 +1,7 @@
 package org.cwatch.backend.message;
 
-public interface LritPosition extends TypedPosition<Integer> {
+import java.io.Serializable;
+
+public interface LritPosition extends TypedPosition<Integer>, Serializable {
 	
 }

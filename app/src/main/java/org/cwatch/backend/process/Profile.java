@@ -4,6 +4,4 @@ public interface Profile<V> {
 	
 	EnrichedPositionFilter<V> getPositionFilter();
 
-	
-
 }

@@ -17,4 +17,6 @@ public interface DefaultPositionStore<I, P extends TypedPosition<I>> {
 	
 	Stream<P> queryArea(Range<Date> period, double latitudeFrom, double latitudeTo, double longitudeFrom, double longitudeTo);
 	
+	void flush();
+	
 }

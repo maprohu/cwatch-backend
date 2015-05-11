@@ -16,44 +16,29 @@ import org.mapdb.DBMaker;
 import com.google.common.base.Stopwatch;
 
 
-public class MapdbTestMain {
+public class MapdbNotxTestMain {
 
-	private static final int COMMIT_COUNT = 1000000;
-	private static final int POS_COUNT    = 100000;
 	private DB db;
 	private BTreeMap<Long, Object> pos;
 	private Atomic.Long keyinc;
 
 	@Before
 	public void setup() {
-
-		file = new File("target/mapdb/tx.db");
-		file.getParentFile().mkdirs();
 		
-	}
-
-	public void notx() {
+		dbfile = new File("target/mapdb/notx.db");
+		dbfile.getParentFile().mkdirs();
+		
 		stopwatch = Stopwatch.createStarted();
 		
 		db = DBMaker
-		.fileDB(file)
+		//.appendFileDB(file)
+		.fileDB(dbfile)
+		.closeOnJvmShutdown()
 		.mmapFileEnable()
 		.transactionDisable()
 		.asyncWriteEnable()
-		.make();
-
-		pos = db.treeMapCreate("pos").keySerializer(BTreeKeySerializer.LONG).makeOrGet();
-		keyinc = db.atomicLong("pos_keyinc");
-		
-	}
-	public void tx() {
-		stopwatch = Stopwatch.createStarted();
-		
-		db = DBMaker
-		.fileDB(file)
-		.mmapFileEnable()
+		.asyncWriteFlushDelay(1000)
 		.commitFileSyncDisable()
-		.asyncWriteEnable()
 		.make();
 
 		pos = db.treeMapCreate("pos").keySerializer(BTreeKeySerializer.LONG).makeOrGet();
@@ -62,43 +47,30 @@ public class MapdbTestMain {
 	
 	@After
 	public void teardown() {
-		db.commit();
 		db.close();
+		
 		System.out.println(stopwatch.stop());
+		
 	}
 
 	int c = 0;
 	private Stopwatch stopwatch;
-	private File file;
+	private File dbfile;
 	
 	@Test
-	public void testInsertNoTx() {
-		file.delete();
-		notx();
-		
-		IntStream.rangeClosed(1, POS_COUNT).forEach(i -> {
-			pos.put(keyinc.incrementAndGet(), "boo"+i);
-		});
-		
-	}
-	@Test
 	public void testInsert() {
-		file.delete();
-		tx();
+		db.close();
+		dbfile.delete();
+		setup();
 		
-		IntStream.rangeClosed(1, POS_COUNT).forEach(i -> {
+		IntStream.rangeClosed(1, 5000000).forEach(i -> {
 			pos.put(keyinc.incrementAndGet(), "boo"+i);
-			if (c++ % COMMIT_COUNT == 0) {
-				db.commit();
-			}
 		});
 	}
 
 	
 	@Test
 	public void testLoad() {
-		tx();
-		
 		IntStream.rangeClosed(1, 1000).forEach(i->{
 			System.out.println(pos.get(ThreadLocalRandom.current().nextLong(keyinc.get())));
 		});

@@ -1,5 +1,7 @@
 package org.cwatch.backend.message;
 
-public interface VmsPosition extends TypedPosition<String> {
+import java.io.Serializable;
+
+public interface VmsPosition extends TypedPosition<String>, Serializable {
 	
 }

@@ -1,10 +1,12 @@
 package org.cwatch.backend.store;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.cwatch.backend.message.TypedPosition;
 
-public class DefaultTypedPosition<I> implements TypedPosition<I> {
+@SuppressWarnings("serial")
+public class DefaultTypedPosition<I> implements TypedPosition<I>, Serializable {
 
 	final I id;
 	

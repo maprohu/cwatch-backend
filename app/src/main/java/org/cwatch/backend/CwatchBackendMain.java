@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
 })
 @Import({
 	MfwWebConfiguration.class,
-	MemoryStoreConfiguration.class,
+	MapdbStoreConfiguration.class,
 	LatestPositionConfiguration.class,
 	RouteConfiguration.class
 })
@@ -84,7 +84,7 @@ public class CwatchBackendMain implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		IdentityGenerator<VesselId> idg = IdentityGenerator.newInstance();
-		idg.setVesselCount(2000);
+		idg.setVesselCount(10000);
 		
 		idg.generate(mmsiIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(100, 200));
 		idg.generate(imoIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(200, 300));
@@ -93,10 +93,10 @@ public class CwatchBackendMain implements CommandLineRunner {
 		LOG.info("Ids generated for {} vessels.", idg.getVesselCount());
 		
 		RealTimeSimulator<VesselId> realTimeSimulator = realTimeSimulator();
-		realTimeSimulator.setReportingPeriodSeconds(1);
-		realTimeSimulator.setReportingPeriodVariationSeconds(0.1);
+		realTimeSimulator.setReportingPeriodSeconds(10);
+		realTimeSimulator.setReportingPeriodVariationSeconds(9);
 		realTimeSimulator.simulate( 
-			Executors.newSingleThreadScheduledExecutor(),
+			Executors.newScheduledThreadPool(4),
 			idg.getVessels(), 
 			aisPosition::sendBody,
 			lritPosition::sendBody,

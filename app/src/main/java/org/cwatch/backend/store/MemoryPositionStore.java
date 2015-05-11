@@ -13,6 +13,7 @@ public class MemoryPositionStore<I, P extends TypedPosition<I>> implements Defau
 
 	final Collection<P> items = new ConcurrentLinkedQueue<>();
 	
+	
 	@Override
 	public void save(P position) {
 		items.add(position);
@@ -38,6 +39,12 @@ public class MemoryPositionStore<I, P extends TypedPosition<I>> implements Defau
 	public void clear() {
 		items.clear();
 	}
+
+	@Override
+	public void flush() {
+	}
 	
 
 }
+
+
