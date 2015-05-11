@@ -10,8 +10,10 @@ import java.util.stream.IntStream;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.cwatch.backend.message.AisPosition;
+import org.cwatch.backend.message.DefaultPosition;
 import org.cwatch.backend.message.LritPosition;
 import org.cwatch.backend.message.VmsPosition;
+import org.cwatch.backend.process.LatestPositionProcessor;
 import org.cwatch.backend.store.CompositeTrackStore;
 import org.cwatch.backend.store.DefaultIdentityStore;
 import org.cwatch.backend.store.MemoryAisPosition;
@@ -29,6 +31,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -194,6 +197,36 @@ public class MemoryTest {
 		RouteConfiguration.class
 	})
 	public static class Context {
+		@Bean
+		LatestPositionProcessor latestPositionProcessor() {
+			return new LatestPositionProcessor() {
+				
+				@Override
+				public void processVms(VmsPosition position) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void processLrit(LritPosition position) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void processDefault(DefaultPosition position) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void processAis(AisPosition position) {
+					// TODO Auto-generated method stub
+					
+				}
+			};
+		}
+		
 	}
 
 }

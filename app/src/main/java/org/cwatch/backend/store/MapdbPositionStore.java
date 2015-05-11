@@ -114,8 +114,8 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 	private NavigableSet<Object[]> lookupIdTimestamp;
 	private MapListener<Long, P> lookupListener;
 	
-	int counter = 0;
-	private static final int COMMIT_COUNT = 100000;
+//	int counter = 0;
+//	private static final int COMMIT_COUNT = 100000;
 	
 	@Override
 	public void save(P position) {

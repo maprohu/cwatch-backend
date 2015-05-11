@@ -15,8 +15,54 @@ import org.junit.Test;
 
 import com.google.common.collect.Range;
 
-public class MapdbConcurrencyTest {
+public class MapdbConcurrencyTestTool {
 
+	
+	@Test
+	public void testSingle() {
+		final int POS_COUNT    = 50000000;
+
+		MapdbPositionStore<Integer, MemoryAisPosition> store = new MapdbPositionStore<Integer, MemoryAisPosition>("ais");
+		store.init();
+
+		ThreadLocalRandom rnd = ThreadLocalRandom.current();	
+		IntStream.rangeClosed(1, POS_COUNT).forEach(i -> {
+			store.save(new MemoryAisPosition(
+					rnd.nextInt(100), 
+					new Date(), 
+					rnd.nextDouble(), 
+					rnd.nextDouble(),
+					rnd.nextDouble()
+			    ));
+		});
+		
+		store.close();
+		
+	}
+	
+	@Test
+	public void testMulti() {
+		final int POS_COUNT    = 50000000;
+
+		MapdbPositionStore<Integer, MemoryAisPosition> store = new MapdbPositionStore<Integer, MemoryAisPosition>("ais");
+		store.init();
+
+		IntStream.rangeClosed(1, POS_COUNT).parallel().forEach(i -> {
+			ThreadLocalRandom rnd = ThreadLocalRandom.current();	
+			store.save(new MemoryAisPosition(
+					rnd.nextInt(100), 
+					new Date(), 
+					rnd.nextDouble(), 
+					rnd.nextDouble(),
+					rnd.nextDouble()
+			    ));
+		});
+		
+		store.close();
+		
+	}
+	
+	
 	@Test
 	public void test() throws InterruptedException {
 		int vesselCount = 5;

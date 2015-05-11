@@ -35,19 +35,22 @@ public class RouteConfiguration {
 		@Override
 		public void configure() throws Exception {
 			Direct.AIS_POSITION.from(this)
-			.multicast().parallelProcessing()
-			.bean(aisPositionStore)
-			.process(ex -> latestPositionProcessor.processAis(ex.getIn().getBody(AisPosition.class)));
+//			.multicast()//.parallelProcessing()
+			.process(ex -> aisPositionStore.save(ex.getIn().getBody(AisPosition.class)))
+			.process(ex -> latestPositionProcessor.processAis(ex.getIn().getBody(AisPosition.class)))
+			;
 
 			Direct.LRIT_POSITION.from(this)
-			.multicast().parallelProcessing()
-			.bean(lritPositionStore)
-			.process(ex -> latestPositionProcessor.processLrit(ex.getIn().getBody(LritPosition.class)));
+//			.multicast()//.parallelProcessing()
+			.process(ex -> lritPositionStore.save(ex.getIn().getBody(LritPosition.class)))
+			.process(ex -> latestPositionProcessor.processLrit(ex.getIn().getBody(LritPosition.class)))
+			;
 
 			Direct.VMS_POSITION.from(this)
-			.multicast().parallelProcessing()
-			.bean(vmsPositionStore)
-			.process(ex -> latestPositionProcessor.processVms(ex.getIn().getBody(VmsPosition.class)));
+//			.multicast()//.parallelProcessing()
+			.process(ex -> vmsPositionStore.save(ex.getIn().getBody(VmsPosition.class)))
+			.process(ex -> latestPositionProcessor.processVms(ex.getIn().getBody(VmsPosition.class)))
+			;
 		}
 		
 		<I, P extends TypedPosition<I>> void latestPosition(P position, DefaultIdentityStore<VesselId, I> ids) {

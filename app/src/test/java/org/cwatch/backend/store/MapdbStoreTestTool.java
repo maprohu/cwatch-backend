@@ -9,9 +9,11 @@ import java.util.stream.IntStream;
 
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.util.concurrent.SynchronousExecutorService;
 import org.cwatch.backend.MapdbStoreConfiguration;
 import org.cwatch.backend.RouteConfiguration;
 import org.cwatch.backend.message.AisPosition;
+import org.cwatch.backend.message.DefaultPosition;
 import org.cwatch.backend.message.LritPosition;
 import org.cwatch.backend.message.VmsPosition;
 import org.cwatch.backend.process.LatestPositionProcessor;
@@ -126,7 +128,7 @@ public class MapdbStoreTestTool {
 	
 	@Test
 	public void testIds() throws InterruptedException {
-		int days = 30;
+		int days = 1;
 		int posPerDay = (int) (TimeUnit.MINUTES.convert(1, TimeUnit.DAYS) / 6);
 
 		LOG.info("generating ids...");
@@ -143,7 +145,8 @@ public class MapdbStoreTestTool {
 		
 		LOG.info("sending messages...");
 		//ExecutorService save = Executors.newFixedThreadPool(8);
-		ExecutorService save = Executors.newSingleThreadExecutor();
+		//ExecutorService save = Executors.newSingleThreadExecutor();
+		ExecutorService save = new SynchronousExecutorService();
 		
 		
 		PositionGenerator pg = new PositionGenerator(save);
@@ -158,7 +161,8 @@ public class MapdbStoreTestTool {
 
 				switch(ThreadLocalRandom.current().nextInt(3)) {
 				case 0:
-					aisPosition.sendBody(new MemoryAisPosition(
+//					aisPosition.sendBody(new MemoryAisPosition(
+					aisPositionStore.save(new MemoryAisPosition(
 							mmsiIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
@@ -167,7 +171,8 @@ public class MapdbStoreTestTool {
 					));
 					break;
 				case 1:
-					lritPosition.sendBody(new MemoryLritPosition(
+//					lritPosition.sendBody(new MemoryLritPosition(
+					lritPositionStore.save(new MemoryLritPosition(
 							imoIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
@@ -176,7 +181,8 @@ public class MapdbStoreTestTool {
 					));
 					break;
 				case 2:
-					vmsPosition.sendBody(new MemoryVmsPosition(
+//					vmsPosition.sendBody(new MemoryVmsPosition(
+					vmsPositionStore.save(new MemoryVmsPosition(
 							irIdentityStore.getIdentifier(v, pos.getTimeStamp()), 
 							pos.getTimeStamp(), 
 							pos.getCooordinates().getLatitude().getValue(), 
@@ -211,11 +217,11 @@ public class MapdbStoreTestTool {
 				positionTotal * 1000.0 / timer.elapsed(TimeUnit.MILLISECONDS)));
 		
 		
-		LOG.info("checking count...");
-		idg.getVessels().forEach(v -> {
-			Assert.assertEquals(pg.getPositionCount(), trackStore.queryTrack(v, Range.<Date>all()).count());
-		});
-		LOG.info("checked.");
+//		LOG.info("checking count...");
+//		idg.getVessels().forEach(v -> {
+//			Assert.assertEquals(pg.getPositionCount(), trackStore.queryTrack(v, Range.<Date>all()).count());
+//		});
+//		LOG.info("checked.");
 		
 		
 		
@@ -232,7 +238,32 @@ public class MapdbStoreTestTool {
 		
 		@Bean
 		LatestPositionProcessor latestPositionProcessor() {
-			return Mockito.mock(LatestPositionProcessor.class);
+			return new LatestPositionProcessor() {
+				
+				@Override
+				public void processVms(VmsPosition position) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void processLrit(LritPosition position) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void processDefault(DefaultPosition position) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void processAis(AisPosition position) {
+					// TODO Auto-generated method stub
+					
+				}
+			};
 		}
 	}
 
