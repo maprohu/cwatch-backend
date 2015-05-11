@@ -1,9 +1,11 @@
 package org.cwatch.backend;
 
 import java.io.File;
+import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
+import org.cwatch.backend.store.MemoryAisPosition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +20,8 @@ import com.google.common.base.Stopwatch;
 
 public class MapdbTestMain {
 
+	private static final int POS_COUNT    = 10000000;
 	private static final int COMMIT_COUNT = 1000000;
-	private static final int POS_COUNT    = 100000;
 	private DB db;
 	private BTreeMap<Long, Object> pos;
 	private Atomic.Long keyinc;
@@ -40,6 +42,8 @@ public class MapdbTestMain {
 		.mmapFileEnable()
 		.transactionDisable()
 		.asyncWriteEnable()
+		.metricsEnable()
+		.metricsExecutorEnable()
 		.make();
 
 		pos = db.treeMapCreate("pos").keySerializer(BTreeKeySerializer.LONG).makeOrGet();
@@ -75,9 +79,15 @@ public class MapdbTestMain {
 	public void testInsertNoTx() {
 		file.delete();
 		notx();
-		
+		ThreadLocalRandom rnd = ThreadLocalRandom.current();	
 		IntStream.rangeClosed(1, POS_COUNT).forEach(i -> {
-			pos.put(keyinc.incrementAndGet(), "boo"+i);
+			pos.put(keyinc.incrementAndGet(), new MemoryAisPosition(
+					rnd.nextInt(100), 
+					new Date(), 
+					rnd.nextDouble(), 
+					rnd.nextDouble(),
+					rnd.nextDouble()
+			    ));
 		});
 		
 	}

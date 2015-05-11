@@ -42,7 +42,7 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 	private static final String dataDirRelativePath = "mapdb/position";
 	
 	@Autowired
-	CwatchBackendProperties properties;
+	CwatchBackendProperties properties = new CwatchBackendProperties();
 
 	private NavigableSet<Object[]> lookupTimestamp;
 	
