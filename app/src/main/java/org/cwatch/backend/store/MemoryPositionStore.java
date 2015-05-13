@@ -43,6 +43,12 @@ public class MemoryPositionStore<I, P extends TypedPosition<I>> implements Defau
 	@Override
 	public void flush() {
 	}
+
+	@Override
+	public void pump(Stream<P> positions) {
+		clear();
+		positions.forEach(this::save);
+	}
 	
 
 }

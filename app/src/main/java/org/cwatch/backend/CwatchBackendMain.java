@@ -2,6 +2,7 @@ package org.cwatch.backend;
 
 import hu.mapro.mfw.web.MfwWebConfiguration;
 import hu.mapro.mfw.web.MfwWebConfigurer;
+import hu.mapro.mfw.web.MfwWebDefaultConfiguration;
 import hu.mapro.mfw.web.MfwWebSettings;
 
 import java.util.concurrent.Executors;
@@ -32,7 +33,7 @@ import org.springframework.stereotype.Component;
 		SolrAutoConfiguration.class
 })
 @Import({
-	MfwWebConfiguration.class,
+	MfwWebDefaultConfiguration.class,
 	MapdbStoreConfiguration.class,
 	LatestPositionConfiguration.class,
 	RouteConfiguration.class
@@ -84,7 +85,7 @@ public class CwatchBackendMain implements CommandLineRunner {
 	@Override
 	public void run(String... arg0) throws Exception {
 		IdentityGenerator<VesselId> idg = IdentityGenerator.newInstance();
-		idg.setVesselCount(10000);
+		idg.setVesselCount(50000);
 		
 		idg.generate(mmsiIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(100, 200));
 		idg.generate(imoIdentityStore, (v, d) -> v.getId() * 1000 + ThreadLocalRandom.current().nextInt(200, 300));
@@ -93,8 +94,8 @@ public class CwatchBackendMain implements CommandLineRunner {
 		LOG.info("Ids generated for {} vessels.", idg.getVesselCount());
 		
 		RealTimeSimulator<VesselId> realTimeSimulator = realTimeSimulator();
-		realTimeSimulator.setReportingPeriodSeconds(10);
-		realTimeSimulator.setReportingPeriodVariationSeconds(9);
+		realTimeSimulator.setReportingPeriodSeconds(50);
+		realTimeSimulator.setReportingPeriodVariationSeconds(49);
 		realTimeSimulator.simulate( 
 			Executors.newScheduledThreadPool(4),
 			idg.getVessels(), 
