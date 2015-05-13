@@ -1,6 +1,7 @@
 package org.cwatch.backend.store;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Stream;
@@ -48,6 +49,13 @@ public class MemoryPositionStore<I, P extends TypedPosition<I>> implements Defau
 	public void pump(Stream<P> positions) {
 		clear();
 		positions.forEach(this::save);
+	}
+
+	@Override
+	public Stream<P> queryLatest(Date from) {
+		return items.stream()
+				.filter(p -> !p.getTimestamp().before(from))
+				.sorted(Comparator.comparing(P::getTimestamp).reversed());
 	}
 	
 

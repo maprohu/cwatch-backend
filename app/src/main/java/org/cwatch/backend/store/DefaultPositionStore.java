@@ -19,6 +19,13 @@ public interface DefaultPositionStore<I, P extends TypedPosition<I>> {
 	
 	Stream<P> queryArea(Range<Date> period, double latitudeFrom, double latitudeTo, double longitudeFrom, double longitudeTo);
 	
+	/**
+	 * 
+	 * @param from
+	 * @return decreasing by timestamp. 
+	 */
+	Stream<P> queryLatest(Date from);
+	
 	void flush();
 	
 }

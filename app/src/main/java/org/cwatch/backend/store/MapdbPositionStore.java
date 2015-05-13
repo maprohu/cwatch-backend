@@ -47,7 +47,18 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 	@Autowired
 	CwatchBackendProperties properties = new CwatchBackendProperties();
 
+	private DB db;
+
+	private BTreeMap<Long, P> table;
+
+	private org.mapdb.Atomic.Long sequence;
+
+	private NavigableSet<Object[]> lookupIdTimestamp;
+	private MapListener<Long, P> lookupListener;
+	
 	private NavigableSet<Object[]> lookupTimestamp;
+	
+	private final Function<Object[], P> timestampPositionMapper = element -> table.get(element[1]);
 	
 	@PostConstruct
 	public void init() {
@@ -112,14 +123,6 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 		db.close();
 	}
 	
-	private DB db;
-
-	private BTreeMap<Long, P> table;
-
-	private org.mapdb.Atomic.Long sequence;
-
-	private NavigableSet<Object[]> lookupIdTimestamp;
-	private MapListener<Long, P> lookupListener;
 	
 //	int counter = 0;
 //	private static final int COMMIT_COUNT = 100000;
@@ -206,6 +209,7 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 	@Override
 	public Stream<P> queryArea(Range<Date> period, double latitudeFrom,
 			double latitudeTo, double longitudeFrom, double longitudeTo) {
+		
 		return 
 				applyPeriod(
 						lookupTimestamp, 
@@ -214,7 +218,7 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 						Function.identity()
 				)
 				.stream()
-				.map(element -> table.get(element[1]))
+				.map(timestampPositionMapper)
 				.filter(p -> 
 					latitudeFrom <= p.getLatitude() &&
 					p.getLatitude() <= latitudeTo &&
@@ -237,6 +241,14 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 	@Override
 	public void flush() {
 		db.commit();
+	}
+
+	
+	@Override
+	public Stream<P> queryLatest(Date from) {
+		return 
+				lookupTimestamp.tailSet(new Object[] {from.getTime()}, true).descendingSet().stream()
+				.map(timestampPositionMapper);
 	}
 	
 

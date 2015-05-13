@@ -13,6 +13,7 @@ import org.cwatch.backend.process.LatestPositionView.Viewport;
 import org.cwatch.backend.process.ProfileService;
 import org.cwatch.backend.store.VesselId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
@@ -36,6 +37,7 @@ import org.springframework.web.socket.server.support.HttpSessionHandshakeInterce
 
 @Configuration
 @EnableWebSocketMessageBroker
+@EnableConfigurationProperties(CwatchBackendProperties.class)
 public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerConfigurer  {
 
 	private static final String SESSION_POSITION_VIEWS_MAP = "positionViewsMap";
@@ -105,9 +107,10 @@ public class LatestPositionConfiguration extends AbstractWebSocketMessageBrokerC
     LatestPositionRegistry<VesselId> latestPositionRegistry(
     		EnrichmentService<VesselId> enrichmentService, 
     		ProfileService<VesselId> profileService, 
-    		SimpMessagingTemplate messagingTemplate
+    		SimpMessagingTemplate messagingTemplate,
+    		CwatchBackendProperties properties
 	) {
-    	return new DefaultLatestPositionService<VesselId>(enrichmentService, profileService, messagingTemplate);
+    	return new DefaultLatestPositionService<VesselId>(enrichmentService, profileService, messagingTemplate, properties.getLatestPositionTimeoutMilliseconds());
     }
     
     @RestController
