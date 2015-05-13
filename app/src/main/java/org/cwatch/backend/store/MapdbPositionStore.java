@@ -18,7 +18,10 @@ import org.mapdb.BTreeKeySerializer;
 import org.mapdb.BTreeMap;
 import org.mapdb.Bind.MapListener;
 import org.mapdb.DB;
+import org.mapdb.DB.BTreeMapMaker;
 import org.mapdb.DBMaker;
+import org.mapdb.Fun;
+import org.mapdb.Fun.Pair;
 import org.mapdb.Serializer;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -62,9 +65,7 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 				.metricsExecutorEnable()
 				.make();
 		
-		table = db
-				.treeMapCreate(dataTypeName)
-				.keySerializer(BTreeKeySerializer.LONG)
+		table = tableMaker()
 				.makeOrGet();
 		
 		sequence = db
@@ -98,6 +99,12 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 		);
 		
 	}
+
+	private BTreeMapMaker tableMaker() {
+		return db
+				.treeMapCreate(dataTypeName)
+				.keySerializer(BTreeKeySerializer.LONG);
+	}
 	
 	@PreDestroy
 	public void close() {
@@ -124,6 +131,20 @@ public class MapdbPositionStore<I extends Serializable, P extends TypedPosition<
 //			counter = 0;
 //			db.commit();
 //		}
+	}
+
+	@Override
+	public void pump(Stream<P> positions) {
+		clear();
+		
+		Stream<Pair<Long, P>> s = positions
+		.map(p -> new Fun.Pair<>(-sequence.incrementAndGet(), p))
+		.peek(kp -> lookupListener.update(kp.a, null, kp.b));
+		
+		table = tableMaker()
+		.pumpSource(s.iterator())
+		.make();
+		
 	}
 
 	@Override

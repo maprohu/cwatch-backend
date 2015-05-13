@@ -13,6 +13,8 @@ public interface DefaultPositionStore<I, P extends TypedPosition<I>> {
 	@Handler
 	void save(P position);
 	
+	void pump(Stream<P> positions);
+	
 	Stream<P> queryVessel(I id, Range<Date> period);
 	
 	Stream<P> queryArea(Range<Date> period, double latitudeFrom, double latitudeTo, double longitudeFrom, double longitudeTo);

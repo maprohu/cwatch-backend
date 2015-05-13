@@ -20,7 +20,7 @@ public class MapDbPumpTestTool {
 	@Test
 	public void test() {
 		int vessels = 100000;
-		int days = 1;
+		int days = 5;
 		int reportingPeriodMinutes = 3;
 		
 		File file = new File("target/mapdb/pump.db");
@@ -29,12 +29,14 @@ public class MapDbPumpTestTool {
 		
 		Stopwatch sw = Stopwatch.createStarted();
 		
+		System.out.println("creating db");
+		
 		DB db = DBMaker
 		.fileDB(file)
 		.transactionDisable()
 		.metricsEnable()
 		.metricsExecutorEnable()
-		.mmapFileEnable()
+		.fileChannelEnable()
 		.make();
 		
 		int recordCount = (int) (vessels * (TimeUnit.MINUTES.convert(days, TimeUnit.DAYS) / reportingPeriodMinutes));
@@ -51,10 +53,14 @@ public class MapDbPumpTestTool {
 		)))
 		.iterator();
 		
+		System.out.println("pumping messages");
+		
 		db
 		.treeMapCreate("data")
 		.pumpSource(values)
 		.makeLongMap();
+		
+		System.out.println("committing db");
 		
 		db.commit();
 		db.close();

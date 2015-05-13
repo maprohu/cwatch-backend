@@ -30,3 +30,347 @@ message types
 	
 	radar
 	other generic	
+	
+
+	
+mapdb performance:
+creating db
+pumping messages
+May 12, 2015 10:00:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=15, data.write=322813719, record.read=7, record.write=62164}
+May 12, 2015 10:00:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=363747744, record.read=0, record.write=70033}
+May 12, 2015 10:00:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=362658489, record.read=0, record.write=69862}
+May 12, 2015 10:00:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=345711360, record.read=0, record.write=66525}
+May 12, 2015 10:01:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351103977, record.read=0, record.write=67601}
+May 12, 2015 10:01:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347554083, record.read=0, record.write=66917}
+May 12, 2015 10:01:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352112112, record.read=0, record.write=67796}
+May 12, 2015 10:01:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=356344611, record.read=0, record.write=68609}
+May 12, 2015 10:01:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353959992, record.read=0, record.write=68150}
+May 12, 2015 10:01:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=357618291, record.read=0, record.write=68855}
+May 12, 2015 10:02:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353965560, record.read=0, record.write=68152}
+May 12, 2015 10:02:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349917018, record.read=0, record.write=67372}
+May 12, 2015 10:02:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348838464, record.read=0, record.write=67164}
+May 12, 2015 10:02:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=355829871, record.read=0, record.write=68511}
+May 12, 2015 10:02:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=356512686, record.read=0, record.write=68642}
+May 12, 2015 10:02:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352406266, record.read=0, record.write=67852}
+May 12, 2015 10:03:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=354087588, record.read=0, record.write=68175}
+May 12, 2015 10:03:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=360569382, record.read=0, record.write=69422}
+May 12, 2015 10:03:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=355794715, record.read=0, record.write=68503}
+May 12, 2015 10:03:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=357632014, record.read=0, record.write=68857}
+May 12, 2015 10:03:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348966067, record.read=0, record.write=67189}
+May 12, 2015 10:03:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=355306917, record.read=0, record.write=68409}
+May 12, 2015 10:04:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=359902937, record.read=0, record.write=69295}
+May 12, 2015 10:04:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=354987114, record.read=0, record.write=68347}
+May 12, 2015 10:04:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=355447813, record.read=0, record.write=68436}
+May 12, 2015 10:04:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353654248, record.read=0, record.write=68093}
+May 12, 2015 10:04:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347258704, record.read=0, record.write=66859}
+May 12, 2015 10:04:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=358705138, record.read=0, record.write=69064}
+May 12, 2015 10:05:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=362628778, record.read=0, record.write=69818}
+May 12, 2015 10:05:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=360352676, record.read=0, record.write=69381}
+May 12, 2015 10:05:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=357348615, record.read=0, record.write=68798}
+May 12, 2015 10:05:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=357159462, record.read=0, record.write=68739}
+May 12, 2015 10:05:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=356107694, record.read=0, record.write=68537}
+May 12, 2015 10:05:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=361269388, record.read=0, record.write=69532}
+May 12, 2015 10:06:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353987828, record.read=0, record.write=68129}
+May 12, 2015 10:06:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=358482727, record.read=0, record.write=68996}
+May 12, 2015 10:06:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=358818732, record.read=0, record.write=69060}
+May 12, 2015 10:06:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=359805200, record.read=0, record.write=69248}
+May 12, 2015 10:06:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=356102432, record.read=0, record.write=68537}
+May 12, 2015 10:06:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=357468718, record.read=0, record.write=68800}
+May 12, 2015 10:07:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353538088, record.read=0, record.write=68044}
+May 12, 2015 10:07:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351412320, record.read=0, record.write=67632}
+May 12, 2015 10:07:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=354161554, record.read=0, record.write=68164}
+May 12, 2015 10:07:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=357121680, record.read=0, record.write=68734}
+May 12, 2015 10:07:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352236616, record.read=0, record.write=67791}
+May 12, 2015 10:07:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353635706, record.read=0, record.write=68063}
+May 12, 2015 10:08:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348349444, record.read=0, record.write=67045}
+May 12, 2015 10:08:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=343030556, record.read=0, record.write=66020}
+May 12, 2015 10:08:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=358791368, record.read=0, record.write=69053}
+May 12, 2015 10:08:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=355126512, record.read=0, record.write=68349}
+May 12, 2015 10:08:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=359133298, record.read=0, record.write=69121}
+May 12, 2015 10:08:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=358092208, record.read=0, record.write=68920}
+May 12, 2015 10:09:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=355169816, record.read=0, record.write=68357}
+May 12, 2015 10:09:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=350019262, record.read=0, record.write=67366}
+May 12, 2015 10:09:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349737370, record.read=0, record.write=67312}
+May 12, 2015 10:09:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351575060, record.read=0, record.write=67664}
+May 12, 2015 10:09:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=358233332, record.read=0, record.write=68948}
+May 12, 2015 10:09:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352345220, record.read=0, record.write=67814}
+May 12, 2015 10:10:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351206382, record.read=0, record.write=67593}
+May 12, 2015 10:10:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352843882, record.read=0, record.write=67909}
+May 12, 2015 10:10:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=354454278, record.read=0, record.write=68220}
+May 12, 2015 10:10:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351526648, record.read=0, record.write=67657}
+May 12, 2015 10:10:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353310024, record.read=0, record.write=67998}
+May 12, 2015 10:10:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=335299516, record.read=0, record.write=64534}
+May 12, 2015 10:11:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348912920, record.read=0, record.write=67151}
+May 12, 2015 10:11:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349054304, record.read=0, record.write=67181}
+May 12, 2015 10:11:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353174826, record.read=0, record.write=67974}
+May 12, 2015 10:11:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=354351244, record.read=0, record.write=68200}
+May 12, 2015 10:11:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=345632966, record.read=0, record.write=66522}
+May 12, 2015 10:11:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348371108, record.read=0, record.write=67048}
+May 12, 2015 10:12:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347232400, record.read=0, record.write=66829}
+May 12, 2015 10:12:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349591056, record.read=0, record.write=67284}
+May 12, 2015 10:12:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=350821610, record.read=0, record.write=67520}
+May 12, 2015 10:12:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352350482, record.read=0, record.write=67814}
+May 12, 2015 10:12:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=332556136, record.read=0, record.write=64006}
+May 12, 2015 10:12:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=343431730, record.read=0, record.write=66097}
+May 12, 2015 10:13:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=350626682, record.read=0, record.write=67484}
+May 12, 2015 10:13:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346842082, record.read=0, record.write=66754}
+May 12, 2015 10:13:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=358206074, record.read=0, record.write=68942}
+May 12, 2015 10:13:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353104086, record.read=0, record.write=67959}
+May 12, 2015 10:13:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=354275266, record.read=0, record.write=68185}
+May 12, 2015 10:13:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351906182, record.read=0, record.write=67730}
+May 12, 2015 10:14:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=342748664, record.read=0, record.write=65966}
+May 12, 2015 10:14:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=343274690, record.read=0, record.write=66068}
+May 12, 2015 10:14:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=343930652, record.read=0, record.write=66194}
+May 12, 2015 10:14:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348002276, record.read=0, record.write=66977}
+May 12, 2015 10:14:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349157386, record.read=0, record.write=67201}
+May 12, 2015 10:14:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351618672, record.read=0, record.write=67674}
+May 12, 2015 10:15:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346527694, record.read=0, record.write=66694}
+May 12, 2015 10:15:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=339847960, record.read=0, record.write=65407}
+May 12, 2015 10:15:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346386724, record.read=0, record.write=66667}
+May 12, 2015 10:15:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=350019132, record.read=0, record.write=67365}
+May 12, 2015 10:15:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=350681126, record.read=0, record.write=67496}
+May 12, 2015 10:15:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=341962410, record.read=0, record.write=65814}
+May 12, 2015 10:16:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347682626, record.read=0, record.write=66917}
+May 12, 2015 10:16:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=344131044, record.read=0, record.write=66231}
+May 12, 2015 10:16:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=345118080, record.read=0, record.write=66423}
+May 12, 2015 10:16:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=339707192, record.read=0, record.write=65381}
+May 12, 2015 10:16:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=342987382, record.read=0, record.write=66013}
+May 12, 2015 10:16:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349899980, record.read=0, record.write=67343}
+May 12, 2015 10:17:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=344147422, record.read=0, record.write=66235}
+May 12, 2015 10:17:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352204274, record.read=0, record.write=67787}
+May 12, 2015 10:17:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352453718, record.read=0, record.write=67835}
+May 12, 2015 10:17:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353971556, record.read=0, record.write=68126}
+May 12, 2015 10:17:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352003622, record.read=0, record.write=67748}
+May 12, 2015 10:17:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=337739186, record.read=0, record.write=65003}
+May 12, 2015 10:18:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=345513708, record.read=0, record.write=66498}
+May 12, 2015 10:18:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347108034, record.read=0, record.write=66807}
+May 12, 2015 10:18:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352036118, record.read=0, record.write=67754}
+May 12, 2015 10:18:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346055804, record.read=0, record.write=66602}
+May 12, 2015 10:18:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352052366, record.read=0, record.write=67757}
+May 12, 2015 10:18:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346581984, record.read=0, record.write=66705}
+May 12, 2015 10:19:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=338395066, record.read=0, record.write=65128}
+May 12, 2015 10:19:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346234970, record.read=0, record.write=66638}
+May 12, 2015 10:19:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348918620, record.read=0, record.write=67154}
+May 12, 2015 10:19:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=345974612, record.read=0, record.write=66587}
+May 12, 2015 10:19:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=342694658, record.read=0, record.write=65957}
+May 12, 2015 10:19:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=340216614, record.read=0, record.write=65478}
+May 12, 2015 10:20:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=340151978, record.read=0, record.write=65468}
+May 12, 2015 10:20:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=355673894, record.read=0, record.write=68453}
+May 12, 2015 10:20:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=344548904, record.read=0, record.write=66314}
+May 12, 2015 10:20:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=338573876, record.read=0, record.write=65162}
+May 12, 2015 10:20:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=345860876, record.read=0, record.write=66566}
+May 12, 2015 10:20:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=345443478, record.read=0, record.write=66486}
+May 12, 2015 10:21:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347991444, record.read=0, record.write=66975}
+May 12, 2015 10:21:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349666962, record.read=0, record.write=67299}
+May 12, 2015 10:21:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347639014, record.read=0, record.write=66907}
+May 12, 2015 10:21:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347243232, record.read=0, record.write=66831}
+May 12, 2015 10:21:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348138335, record.read=0, record.write=67006}
+May 12, 2015 10:21:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346701266, record.read=0, record.write=66728}
+May 12, 2015 10:22:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=350702174, record.read=0, record.write=67496}
+May 12, 2015 10:22:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346050696, record.read=0, record.write=66603}
+May 12, 2015 10:22:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=344781614, record.read=0, record.write=66356}
+May 12, 2015 10:22:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346495376, record.read=0, record.write=66689}
+May 12, 2015 10:22:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351944046, record.read=0, record.write=67737}
+May 12, 2015 10:22:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353830480, record.read=0, record.write=68098}
+May 12, 2015 10:23:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351672986, record.read=0, record.write=67685}
+May 12, 2015 10:23:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348414282, record.read=0, record.write=67056}
+May 12, 2015 10:23:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=350870662, record.read=0, record.write=67531}
+May 12, 2015 10:23:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348593270, record.read=0, record.write=67091}
+May 12, 2015 10:23:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353890494, record.read=0, record.write=68112}
+May 12, 2015 10:23:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352464372, record.read=0, record.write=67836}
+May 12, 2015 10:24:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351331080, record.read=0, record.write=67617}
+May 12, 2015 10:24:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347731524, record.read=0, record.write=66927}
+May 12, 2015 10:24:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=343453394, record.read=0, record.write=66101}
+May 12, 2015 10:24:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349780698, record.read=0, record.write=67320}
+May 12, 2015 10:24:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346858614, record.read=0, record.write=66759}
+May 12, 2015 10:24:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346418936, record.read=0, record.write=66671}
+May 12, 2015 10:25:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347639298, record.read=0, record.write=66909}
+May 12, 2015 10:25:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346473712, record.read=0, record.write=66685}
+May 12, 2015 10:25:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=346695566, record.read=0, record.write=66725}
+May 12, 2015 10:25:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349547680, record.read=0, record.write=67276}
+May 12, 2015 10:25:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=349303570, record.read=0, record.write=67228}
+May 12, 2015 10:25:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348701566, record.read=0, record.write=67111}
+May 12, 2015 10:26:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=347850830, record.read=0, record.write=66950}
+May 12, 2015 10:26:15 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=348376370, record.read=0, record.write=67049}
+May 12, 2015 10:26:25 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352030678, record.read=0, record.write=67753}
+May 12, 2015 10:26:35 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=352377716, record.read=0, record.write=67820}
+May 12, 2015 10:26:45 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=355386586, record.read=0, record.write=68398}
+May 12, 2015 10:26:55 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=351103680, record.read=0, record.write=67575}
+May 12, 2015 10:27:05 AM org.mapdb.DB metricsLog
+INFO: Metrics: {cache.hit=0, cache.miss=0, data.read=0, data.write=353220153, record.read=0, record.write=67995}
+committing db
+Count = 240,000,000 msgs; Elapsed = 26.94 min; Rate = 148467.444801 msg/sec
+
+		int vessels = 100000;
+		int days = 5;
+		int reportingPeriodMinutes = 3;
+
+		.mapToObj(i -> new Fun.Pair<Long, MemoryAisPosition>((long) (recordCount-i), new MemoryAisPosition(
+				ThreadLocalRandom.current().nextInt(vessels),
+				new Date(System.currentTimeMillis()-i*millisDiff),
+				ThreadLocalRandom.current().nextDouble(-85, 85),
+				ThreadLocalRandom.current().nextDouble(-175, 175),
+				ThreadLocalRandom.current().nextDouble(0, 360)
+		)))
+
+57,076,088,832  bytes
